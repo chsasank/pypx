@@ -51,6 +51,8 @@ class Find(Base):
         query = ''
         # we use a sorted dictionnary so we can test generated command more easily
         parameters = {**parameters, **opt}
+        parameters = {k: v for k, v in parameters.items()
+                      if k not in {'aec', 'aet', 'server_ip', 'server_port'}}
         ordered = collections.OrderedDict(sorted(parameters.items(), key=lambda t: t[0]))
         for key, value in ordered.items():
             # update value if provided
